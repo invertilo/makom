@@ -1,0 +1,381 @@
+@import "tailwindcss";
+@import "maplibre-gl/dist/maplibre-gl.css";
+
+/* ============================================================
+   MAKOM DESIGN TOKENS
+   World: sello de hechsher sobre atlas de calle.
+   Craft patterns adapted from Mercav (signs, plates, rules, display)
+   with Makom's own seal — never Mercav gold-on-black.
+   ============================================================ */
+
+:root {
+  /* Surfaces — map paper daylight */
+  --color-bg-primary: #faf9f6;
+  --color-bg-secondary: #ffffff;
+  --color-bg-tertiary: #f0ede6;
+  --surface-1-rgb: 250 249 246;
+  --surface-2-rgb: 255 255 255;
+  --surface-3-rgb: 240 237 230;
+
+  /* Seal (hechsher stamp) — leaf, not glow */
+  --color-seal: #0b5f58;
+  --color-seal-light: #148078;
+  --color-seal-dim: rgba(11, 95, 88, 0.1);
+  --color-seal-ink: #084a44; /* ≥4.5:1 on paper */
+  --seal-rgb: 11 95 88;
+
+  /* Reported / dispute (semantic only) */
+  --color-reported: #9a5b12;
+  --color-reported-ink: #7a470e;
+  --color-reported-dim: rgba(154, 91, 18, 0.1);
+
+  /* Ink ranks */
+  --text-primary: #1a1714;
+  --text-secondary: #4a453c;
+  --text-tertiary: #6e685c;
+  --text-inverted: #faf9f6;
+  --ink-rgb: 26 23 20;
+
+  --color-border: #e5e0d5;
+  --sign-rule: rgba(11, 95, 88, 0.38);
+  --sign-rule-soft: rgba(11, 95, 88, 0.16);
+  --sign-inset: 6px;
+
+  --shadow-lg: 0 16px 40px -18px rgba(0, 0, 0, 0.18);
+  --shadow-sm: 0 2px 6px -2px rgba(0, 0, 0, 0.1);
+  --shadow-seal: 0 10px 30px -12px rgba(11, 95, 88, 0.28);
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast: 160ms;
+  --dur-base: 260ms;
+  --dur-slow: 600ms;
+
+  /* shadcn bridge */
+  --background: var(--color-bg-primary);
+  --foreground: var(--text-primary);
+  --card: var(--color-bg-secondary);
+  --card-foreground: var(--text-primary);
+  --muted: var(--color-bg-tertiary);
+  --muted-foreground: var(--text-secondary);
+  --border: var(--color-border);
+  --accent: var(--color-seal);
+  --accent-foreground: #f7fffd;
+  --reported: var(--color-reported);
+  --reported-foreground: #fffaf2;
+  --destructive: #dc2626;
+  --destructive-foreground: #ffffff;
+  --ring: var(--color-seal);
+  --seal: var(--color-seal);
+  --sheet: var(--color-bg-secondary);
+  --map-wash: #f2f3f0;
+  --primary: var(--color-seal);
+  --primary-foreground: #f7fffd;
+  --radius: 0.5rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-reported: var(--reported);
+  --color-reported-foreground: var(--reported-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-ring: var(--ring);
+  --color-seal: var(--seal);
+  --color-sheet: var(--sheet);
+  --color-map-wash: var(--map-wash);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-surface-1: rgb(var(--surface-1-rgb));
+  --color-surface-2: rgb(var(--surface-2-rgb));
+  --color-surface-3: rgb(var(--surface-3-rgb));
+  --color-ink: rgb(var(--ink-rgb));
+  --color-ink-2: var(--text-secondary);
+  --color-ink-3: var(--text-tertiary);
+  --color-rule: var(--sign-rule);
+  --color-rule-soft: var(--sign-rule-soft);
+  --color-seal-ink: var(--color-seal-ink);
+  --color-seal-dim: var(--color-seal-dim);
+  --font-sans: var(--font-body);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
+  --radius-lg: var(--radius);
+}
+
+* {
+  border-color: var(--border);
+}
+
+html {
+  height: 100%;
+  color-scheme: light;
+  scrollbar-color: rgba(11, 95, 88, 0.28) transparent;
+}
+
+body {
+  min-height: 100%;
+  background: var(--color-bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body), "Noto Sans", system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.55;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-seal);
+  color: #f7fffd;
+}
+
+input,
+textarea {
+  caret-color: var(--color-seal);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-seal);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display), var(--font-body), system-ui, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.05;
+  text-wrap: balance;
+  color: var(--text-primary);
+}
+
+h1 {
+  font-weight: 800;
+  letter-spacing: -0.035em;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.font-mono,
+[data-numeric] {
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Layout ---- */
+.container-page {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1320px;
+  padding-inline: 1rem;
+}
+@media (min-width: 768px) {
+  .container-page {
+    padding-inline: 2rem;
+  }
+}
+
+.layer-glass {
+  background: color-mix(in srgb, var(--color-bg-secondary) 88%, transparent);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ---- Sign: framed notice-board panel ---- */
+.sign {
+  position: relative;
+  border: 1px solid var(--sign-rule);
+  background: var(--color-bg-secondary);
+  border-radius: 2px;
+}
+.sign::before {
+  content: "";
+  position: absolute;
+  inset: var(--sign-inset);
+  border: 1px solid var(--sign-rule-soft);
+  pointer-events: none;
+  border-radius: 1px;
+}
+.sign-corners::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  --tick: 12px;
+  background:
+    linear-gradient(var(--color-seal), var(--color-seal)) left top / var(--tick) 1px
+      no-repeat,
+    linear-gradient(var(--color-seal), var(--color-seal)) left top / 1px var(--tick)
+      no-repeat,
+    linear-gradient(var(--color-seal), var(--color-seal)) right top / var(--tick) 1px
+      no-repeat,
+    linear-gradient(var(--color-seal), var(--color-seal)) right top / 1px var(--tick)
+      no-repeat,
+    linear-gradient(var(--color-seal), var(--color-seal)) left bottom / var(--tick)
+      1px no-repeat,
+    linear-gradient(var(--color-seal), var(--color-seal)) left bottom / 1px
+      var(--tick) no-repeat,
+    linear-gradient(var(--color-seal), var(--color-seal)) right bottom / var(--tick)
+      1px no-repeat,
+    linear-gradient(var(--color-seal), var(--color-seal)) right bottom / 1px
+      var(--tick) no-repeat;
+}
+.sign-quiet {
+  border-color: var(--color-border);
+}
+.sign-quiet::before {
+  border-color: transparent;
+}
+.sign-flat {
+  background: transparent;
+}
+.sign-interactive {
+  transition:
+    border-color var(--dur-base) var(--ease-out),
+    transform var(--dur-base) var(--ease-out),
+    box-shadow var(--dur-base) var(--ease-out);
+}
+.sign-interactive:hover {
+  border-color: var(--color-seal);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-2px);
+}
+.sign-interactive:hover::before {
+  border-color: var(--sign-rule);
+}
+
+.plate {
+  background: var(--color-seal);
+  color: var(--primary-foreground);
+  border-radius: 4px;
+}
+.plate-ink {
+  background: var(--text-primary);
+  color: var(--color-bg-primary);
+  border-radius: 4px;
+}
+.plate-reported {
+  background: var(--color-reported);
+  color: #fffaf2;
+  border-radius: 4px;
+}
+
+.rule {
+  height: 1px;
+  background: var(--color-border);
+}
+.rule-seal {
+  height: 1px;
+  background: var(--sign-rule);
+}
+.rule-double {
+  height: 5px;
+  border-top: 1px solid var(--sign-rule);
+  border-bottom: 1px solid var(--sign-rule-soft);
+}
+
+.label-caps {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+}
+
+.display-xl {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 0.95;
+  font-size: clamp(2.75rem, 8.2vw, 5.5rem);
+}
+.display-lg {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  font-weight: 800;
+  letter-spacing: -0.035em;
+  line-height: 1;
+  font-size: clamp(2.25rem, 5.2vw, 4rem);
+}
+.display-md {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  font-size: clamp(1.75rem, 3.4vw, 2.5rem);
+}
+.display-sm {
+  font-family: var(--font-display), var(--font-body), sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  font-size: clamp(1.25rem, 2vw, 1.625rem);
+}
+.lead {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  max-width: 62ch;
+}
+
+.sheen {
+  color: var(--color-seal-ink);
+}
+
+/* MapLibre */
+.maplibregl-map {
+  font: inherit;
+  background: var(--map-wash) !important;
+}
+.maplibregl-ctrl-group {
+  border: 1px solid var(--color-border) !important;
+  border-radius: 4px !important;
+  overflow: hidden;
+  box-shadow: var(--shadow-sm) !important;
+  background: var(--color-bg-secondary) !important;
+}
+.maplibregl-ctrl-group button {
+  width: 36px !important;
+  height: 36px !important;
+}
+.maplibregl-ctrl-attrib {
+  background: color-mix(in srgb, var(--color-bg-secondary) 88%, transparent) !important;
+  border-radius: 4px !important;
+  font-size: 10px !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .animate-\[marquee_40s_linear_infinite\] {
+    animation: none !important;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+

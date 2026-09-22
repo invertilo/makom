@@ -1,0 +1,188 @@
+{
+  "brand": {
+    "name": "Makom",
+    "tagline": "Dove c'è kosher.",
+    "disclaimer": "Makom mostra luoghi e segnalazioni. Non è un hechsher."
+  },
+  "nav": {
+    "map": "Mappa",
+    "communities": "Comunità",
+    "suggest": "Suggerisci",
+    "moderation": "Review",
+    "account": "Account",
+    "home": "Home"
+  },
+  "landing": {
+    "title": "Trova luoghi kosher e comunità",
+    "subtitle": "An atlas for Orthodox and Conservative communities — restaurants, grocery branches, synagogues, and stock reports.",
+    "cta": "Apri la mappa",
+    "morphWords": [
+      "kosher",
+      "כשר",
+      "casher"
+    ]
+  },
+  "search": {
+    "placeholder": "Search places, cities, agencies…",
+    "nearMe": "Vicino a me",
+    "locationDenied": "Location permission was denied.",
+    "eat": "Mangiare",
+    "shop": "Comprare",
+    "kehilla": "Kehillà",
+    "tefilla": "Tefillà",
+    "clear": "Clear filters",
+    "tip": "Certified means an agency source. Reported means a community note — not a hechsher."
+  },
+  "place": {
+    "status": {
+      "certified": "Certified",
+      "community_report": "Community report",
+      "unknown": "Unknown",
+      "disputed": "Disputed",
+      "closed": "Closed"
+    },
+    "types": {
+      "restaurant": "Restaurant",
+      "bakery": "Bakery",
+      "butcher": "Butcher",
+      "grocery_branch": "Grocery branch",
+      "judaica": "Judaica",
+      "synagogue": "Synagogue",
+      "mikvah": "Mikvah",
+      "school": "School",
+      "hotel": "Hotel",
+      "community": "Community center"
+    },
+    "food": {
+      "meat": "Meat",
+      "dairy": "Dairy",
+      "parve": "Parve"
+    },
+    "confirmed": "Confirmed {when}",
+    "agency": "Agency",
+    "chain": "Chain",
+    "branchNote": "Stock is per branch — not for the whole chain.",
+    "nusach": "Nusach",
+    "denomination": "Denomination",
+    "stream": "Stream",
+    "prayerTimes": "Tefilla times",
+    "shacharit": "Shacharit",
+    "mincha": "Mincha",
+    "maariv": "Maariv",
+    "stock": "Stock reports",
+    "stockStale": "May be outdated",
+    "stockFresh": "Recently confirmed",
+    "addStock": "Report stock",
+    "confirmStock": "Still there",
+    "suggestEdit": "Suggest a change",
+    "thread": "Place thread",
+    "cityThread": "City thread",
+    "close": "Close",
+    "statusLine": "{agency} · {food} · {when}",
+    "statusLineReport": "Reported · {food} · {when}",
+    "statusLineSynagogue": "Mincha {time} · nusach {nusach} · {stream}"
+  },
+  "stock": {
+    "categories": {
+      "meat": "Meat",
+      "wine": "Wine",
+      "matzah": "Matzah",
+      "cheese": "Cheese",
+      "frozen": "Frozen",
+      "bakery": "Bakery"
+    },
+    "note": "Note",
+    "submit": "Submit report",
+    "signInRequired": "Sign in to report stock."
+  },
+  "suggest": {
+    "title": "Suggest a place",
+    "name": "Name",
+    "type": "Type",
+    "address": "Address",
+    "city": "City",
+    "country": "Country",
+    "lat": "Latitude",
+    "lng": "Longitude",
+    "notes": "Notes",
+    "submit": "Submit",
+    "success": "Place added as a community report.",
+    "editTitle": "Suggest a change",
+    "field": "Field",
+    "newValue": "New value",
+    "reason": "Reason"
+  },
+  "communities": {
+    "title": "Jewish communities",
+    "population": "Population estimate",
+    "source": "Source",
+    "languages": "Languages",
+    "placesNearby": "Places in this city",
+    "openMap": "Show on map"
+  },
+  "chat": {
+    "title": "Conversation",
+    "placeholder": "Write a short message…",
+    "send": "Send",
+    "signIn": "Sign in to join the conversation.",
+    "report": "Report",
+    "rateLimit": "Please wait a few seconds.",
+    "empty": "No messages yet. Be the first.",
+    "shabbatLocked": "Shabbat mode is on — reading only until Motzaei Shabbat."
+  },
+  "account": {
+    "title": "Account",
+    "signIn": "Sign in as demo member",
+    "signOut": "Sign out",
+    "role": "Role",
+    "denomination": "Preferred denomination",
+    "stream": "Orthodox stream",
+    "shabbatMode": "Shabbat mode",
+    "shabbatHint": "When on, Makom stays read-only from candle lighting until nightfall in your city.",
+    "shabbatActive": "It is Shabbat in your profile city. Writing is paused.",
+    "language": "Language",
+    "guest": "Browsing as guest — filters stay open."
+  },
+  "moderation": {
+    "title": "Pending suggestions",
+    "accept": "Accept",
+    "reject": "Reject",
+    "empty": "No pending edits.",
+    "forbidden": "Moderator access required."
+  },
+  "roles": {
+    "member": "Member",
+    "local_moderator": "Local moderator",
+    "agency": "Agency",
+    "admin": "Admin"
+  },
+  "denomination": {
+    "orthodox": "Orthodox",
+    "conservative": "Conservative / Masorti",
+    "other": "Other"
+  },
+  "nusach": {
+    "ashkenaz": "Ashkenaz",
+    "sefarad": "Sefarad",
+    "edot_hamizrach": "Edot HaMizrach",
+    "spanish_portuguese": "Spanish-Portuguese",
+    "yemenite": "Yemenite",
+    "chabad": "Chabad",
+    "other": "Other"
+  },
+  "stream": {
+    "modern": "Modern Orthodox",
+    "yeshivish": "Yeshivish",
+    "chabad": "Chabad",
+    "hasidic": "Hasidic",
+    "sephardi": "Sephardi",
+    "other": "Other"
+  },
+  "common": {
+    "loading": "Loading…",
+    "save": "Save",
+    "cancel": "Cancel",
+    "back": "Back",
+    "results": "{count} places"
+  }
+}

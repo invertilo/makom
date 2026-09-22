@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="480" viewBox="0 0 1440 480" role="img" aria-label="Makom">
+  <defs>
+    <linearGradient id="paper" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#FAF9F6"/>
+      <stop offset="55%" stop-color="#F3F1EB"/>
+      <stop offset="100%" stop-color="#E8EDE9"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#0B5F58" stroke-opacity="0.06" stroke-width="1"/>
+    </pattern>
+    <radialGradient id="glow" cx="50%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#0B5F58" stop-opacity="0.14"/>
+      <stop offset="100%" stop-color="#0B5F58" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1440" height="480" fill="url(#paper)"/>
+  <rect width="1440" height="480" fill="url(#grid)"/>
+  <rect width="1440" height="480" fill="url(#glow)"/>
+
+  <rect x="48" y="40" width="1344" height="400" rx="4" fill="none" stroke="#0B5F58" stroke-opacity="0.18" stroke-width="1.5"/>
+  <rect x="60" y="52" width="1320" height="376" rx="2" fill="none" stroke="#0B5F58" stroke-opacity="0.08" stroke-width="1"/>
+
+  <g transform="translate(720 155)">
+    <path d="M0 -52c-22 0-40 17-40 39 0 28 40 73 40 73s40-45 40-73c0-22-18-39-40-39z" fill="#0B5F58"/>
+    <circle cx="0" cy="-14" r="14" fill="#FAF9F6"/>
+    <circle cx="0" cy="-14" r="6" fill="#0B5F58"/>
+  </g>
+
+  <text x="720" y="268" text-anchor="middle" font-family="Georgia, 'Times New Roman', Times, serif" font-size="72" font-weight="700" fill="#0B5F58" letter-spacing="6">MAKOM</text>
+  <text x="720" y="308" text-anchor="middle" font-family="Georgia, 'Times New Roman', Times, serif" font-size="22" fill="#0B5F58" opacity="0.75" letter-spacing="8">M A K O M</text>
+  <text x="720" y="358" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="18" fill="#3D4A46" letter-spacing="2">WHERE THERE IS KOSHER  |  DONDE HAY KOSHER</text>
+  <text x="720" y="392" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-size="14" fill="#5C6B66" letter-spacing="1">Community atlas  |  Atlas comunitario  |  Scalable by design</text>
+</svg>
