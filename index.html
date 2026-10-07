@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="refresh" content="2; url=https://kosher.mercav.lat">
+  <link rel="canonical" href="https://kosher.mercav.lat">
+  <title>Makom &rarr; Kosher Mercav (kosher.mercav.lat)</title>
+  <meta name="description" content="El proyecto Makom ha sido cerrado y ahora está obsoleto. Ha sido reemplazado por Kosher Mercav en kosher.mercav.lat">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #0a0e17;
+      --card-bg: rgba(17, 24, 39, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --accent: #2dd4bf;
+      --accent-glow: rgba(45, 212, 191, 0.25);
+      --amber: #f59e0b;
+      --amber-glow: rgba(245, 158, 11, 0.15);
+      --text-primary: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: radial-gradient(circle at 50% 20%, #151d30 0%, var(--bg-dark) 80%);
+      color: var(--text-primary);
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Ambient background glow */
+    body::before {
+      content: '';
+      position: absolute;
+      top: -150px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 450px;
+      background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 580px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 2.75rem 2.25rem;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5),
+                  0 0 0 1px rgba(255, 255, 255, 0.05);
+      text-align: center;
+      transition: transform 0.3s ease;
+    }
+
+    .badge-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 0.85rem;
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(245, 158, 11, 0.3);
+      border-radius: 9999px;
+      margin-bottom: 1.75rem;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--amber);
+      box-shadow: 0 0 10px var(--amber);
+      animation: pulse 2s infinite;
+    }
+
+    .badge-text {
+      color: #fbbf24;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .sub-brand {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .description {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .loader-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      padding: 1.25rem;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+    }
+
+    .spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid rgba(45, 212, 191, 0.2);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    .redirect-msg {
+      font-size: 0.925rem;
+      color: var(--text-muted);
+    }
+
+    .redirect-msg span {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.65rem;
+      width: 100%;
+      padding: 0.95rem 1.75rem;
+      background: linear-gradient(135deg, #0d9488 0%, #14b8a6 100%);
+      color: #ffffff;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 600;
+      font-size: 1.05rem;
+      text-decoration: none;
+      border-radius: 14px;
+      box-shadow: 0 10px 25px -5px rgba(20, 184, 166, 0.4),
+                  0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+      transition: all 0.2s ease;
+    }
+
+    .cta-btn:hover {
+      background: linear-gradient(135deg, #14b8a6 0%, #2dd4bf 100%);
+      box-shadow: 0 14px 30px -5px rgba(45, 212, 191, 0.5);
+      transform: translateY(-2px);
+    }
+
+    .cta-btn svg {
+      transition: transform 0.2s ease;
+    }
+
+    .cta-btn:hover svg {
+      transform: translateX(4px);
+    }
+
+    .footer-note {
+      margin-top: 1.5rem;
+      font-size: 0.8rem;
+      color: var(--text-dim);
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.9); }
+    }
+  </style>
+  <script>
+    // Inmediata redirección mediante JavaScript
+    window.location.replace("https://kosher.mercav.lat");
+  </script>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <div class="badge-wrap">
+        <div class="status-dot"></div>
+        <span class="badge-text">Proyecto cerrado &bull; Obsoleto</span>
+      </div>
+
+      <h1>Makom se mudó</h1>
+      
+      <p class="description">
+        El proyecto <strong>Makom</strong> ha concluido su ciclo y ha quedado oficialmente <strong>obsoleto</strong>.
+        Toda la plataforma y servicios se han unificado y actualizado en <span class="sub-brand">Kosher Mercav</span>.
+      </p>
+
+      <div class="loader-container">
+        <div class="spinner"></div>
+        <p class="redirect-msg">Redirigiendo automáticamente a <span>kosher.mercav.lat</span>...</p>
+      </div>
+
+      <a id="redirect-link" href="https://kosher.mercav.lat" class="cta-btn">
+        <span>Ir a Kosher Mercav</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+
+      <p class="footer-note">
+        Si no eres redirigido automáticamente en unos segundos, haz clic en el botón superior.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
